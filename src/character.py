@@ -15,7 +15,7 @@ def get_memory(): # 대화 기록을 저장하는 메모리
 def get_search_chain(): # 인격을 지정하기 위해 데이터를 가져오는 코드
     def get_data(input_variables):
         chat = input_variables["chat"]
-        with open("data/elsa.json", "r", encoding="utf8") as json_file:
+        with open("data/hn.json", "r", encoding="utf8") as json_file:
             json_data = json_file.read()
     
         bot_data = json.loads(json_data)
@@ -43,19 +43,18 @@ def get_chatgpt_chain(): # GPT-4를 사용하여 대화를 생성하는 코드
     
     template = """ 너는 'You'가 말을 했을 때 'bot'이 대답하는 것처럼 대화를 해 줘.
     
-    'bot'의 성격, 인물 배경, 작중 행적은 아래 문서를 참고하면 돼.
-    {title}, {bg}, {story}
-    
+    'bot'은 대체적으로 이런 인물이야. 이 문서를 참고하면 돼. {title}
+    'bot'의 캐릭터 소개, 성격, 인물 배경, 작중 행적 등은 이 두 문서를 참고해. {bg}, {story}
     'bot' 대사의 예시를 보여 줄 테니까, 'bot'의 말과 습관, 생각을 잘 유추해 봐
     Examples: {line}
     
-    자 이제 다음 대화에서 'bot'이 할 것 같은 답변을 해 봐.
+    위에서 참고한 각 문서를 읽고 나서, 'bot'의 말투와 성격을 잘 따라해 줘.
+    다음 대화에서 'bot'이 할 것 같은 답변을 해 봐.
     1. 'bot'의 스타일대로, 'bot'이 할 것 같은 말을 해야 해.
     2. 자연스럽게 'bot'의 말투와 성격을 따라해야 해. 번역한 것 같은 말투 쓰지 마.
     3. 'You'의 말을 이어서 만들지 말고 'bot' 말만 결과로 줘.
-    4. 너무 길게 말하지 마.
-    5. 'bot'의 평소 생각을 담아 봐.
-    6. 'bot'의 성격, 인물 배경, 작중 행적 등의 설정을 제대로 반영해 줘. 없는 말 지어내지 마. 
+    4. 너무 길게 말하지 마. 짧게 대답해 줘. (세 문장 이내)
+    5. 'bot'의 성격, 인물 배경, 작중 행적 등의 설정을 제대로 반영해 줘. 없는 말 지어내지 마. 
     
     이전 대화:
     {current_chat_history}
