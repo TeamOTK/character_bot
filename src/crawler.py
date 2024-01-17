@@ -35,7 +35,7 @@ options.add_argument('--disable-blink-features=AutomationControlled')
 
 class Namu:
     def __init__(self, save_path):
-        self.url = 'https://namu.wiki/w/%ED%98%9C%EB%82%98(%EC%9D%B4%EB%9F%B0%20%EC%98%81%EC%9B%85%EC%9D%80%20%EC%8B%AB%EC%96%B4)'
+        self.url = 'https://namu.wiki/w/%ED%95%9C%ED%95%B4%EB%82%98'
         self.save_path = save_path
     
     def __wait_until_find(self, driver, xpath):
@@ -57,10 +57,10 @@ class Namu:
         soup = BeautifulSoup(driver.page_source, 'lxml')
         
         text = soup.get_text()
-        title = text.split("1. 개요[편집]")[1].split("2. 성격[편집]")[0]
-        bg = text.split("2. 성격[편집]")[1].split("3. 능력[편집]")[0]
-        story = text.split("4. 작중 행적[편집]")[1].split("5. 명대사[편집]")[0]
-        line = text.split("5. 명대사[편집]")[1].split("6. 기타[편집]")[0]
+        title = text.split("1. 개요[편집]")[1].split("2. 정체(?)[편집]")[0]
+        bg = text.split("2. 정체(?)[편집]")[1].split("3. 대인 관계[편집]")[0]
+        story = text.split("5. 여담[편집]")[1].split("6. 어록[편집]")[0]
+        line = text.split("6. 어록[편집]")[1].split("파워링크")[0]
         
         
         # contents = soup.find_all("div", class_="_1TSYs3S7")
@@ -85,7 +85,7 @@ class Namu:
     
 if __name__ == '__main__':
     
-    save_path = 'src/data/hn.json'
+    save_path = 'src/data/hhn.json'
     
     crawler = Namu(save_path)
     information = crawler.get_info()
