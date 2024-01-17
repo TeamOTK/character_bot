@@ -39,7 +39,7 @@ def get_current_memory_chain(): # 현재 대화 기록을 가져오는 코드
     return current_memory_chain
 
 def get_chatgpt_chain(): # GPT-4를 사용하여 대화를 생성하는 코드
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=os.environ["OPENAI_API_KEY"])
+    llm = ChatOpenAI(model_name="gpt-4", openai_api_key=os.environ["OPENAI_API_KEY"])
     
     template = """ 너는 'You'가 말을 했을 때 'bot'이 대답하는 것처럼 대화를 해 줘.
     
