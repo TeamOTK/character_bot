@@ -19,7 +19,7 @@ def main():
     os.environ["OPENAI_API_KEY"] = st.secrets["openai_key"]
     
     st.title("전영중 채팅방")
-    overall_chain = OverallChain()
+    overall_chain = OverallChain_ft()
     
     # 대화 기록 초기화
     if "messages" not in st.session_state:

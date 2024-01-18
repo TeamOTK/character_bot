@@ -38,7 +38,7 @@ def get_current_memory_chain(): # 현재 대화 기록을 가져오는 코드
     return current_memory_chain
 
 def get_chatgpt_chain(): # 파인튜닝된 GPT-3.5를 사용하여 대화를 생성하는 코드
-    llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=os.environ["OPENAI_API_KEY"])
+    llm = ChatOpenAI(model_name="ft:gpt-3.5-turbo-1106:personal::8iEJjrCV", openai_api_key=os.environ["OPENAI_API_KEY"])
     
     template = """
     SYSTEM: You('bot') are a chatbot who imitates a character and talks to the user('You').
