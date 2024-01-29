@@ -35,7 +35,7 @@ options.add_argument('--disable-blink-features=AutomationControlled')
 
 class Namu:
     def __init__(self, save_path):
-        self.url = 'https://namu.wiki/w/%ED%95%9C%ED%95%B4%EB%82%98'
+        self.url = 'https://namu.wiki/w/%EC%84%B1%EC%A4%80%EC%88%98'
         self.save_path = save_path
     
     def __wait_until_find(self, driver, xpath):
@@ -57,10 +57,11 @@ class Namu:
         soup = BeautifulSoup(driver.page_source, 'lxml')
         
         text = soup.get_text()
-        title = text.split("1. 개요[편집]")[1].split("2. 정체(?)[편집]")[0]
-        bg = text.split("2. 정체(?)[편집]")[1].split("3. 대인 관계[편집]")[0]
-        story = text.split("5. 여담[편집]")[1].split("6. 어록[편집]")[0]
-        line = text.split("6. 어록[편집]")[1].split("파워링크")[0]
+        title = text.split("1. 개요[편집]")[1].split("2. 작중 행적[편집]")[0]
+        #bg = text.split("2. 정체(?)[편집]")[1].split("3. 대인 관계[편집]")[0]
+        #story = text.split("5. 여담[편집]")[1].split("6. 어록[편집]")[0]
+        relation = text.split("4.2.1. 전영중[편집]")[1].split("4.3. 그 외 등장인물[편집]")[0]
+        line = text.split("5. 어록[편집]")[1].split("6. 여담[편집]")[0]
         
         
         # contents = soup.find_all("div", class_="_1TSYs3S7")
@@ -70,7 +71,8 @@ class Namu:
         #print(text)       
         driver.quit()
         
-        return {'title': title, 'bg': bg, 'story': story, 'line': line}
+        #return {'title': title, 'bg': bg, 'story': story, 'line': line}
+        return {'title': title, 'relation': relation, 'line': line}
 
         
     def save_csv(self, filename, reply_list):
@@ -85,7 +87,7 @@ class Namu:
     
 if __name__ == '__main__':
     
-    save_path = 'src/data/hhn.json'
+    save_path = 'src/data/sjs_st.json'
     
     crawler = Namu(save_path)
     information = crawler.get_info()
