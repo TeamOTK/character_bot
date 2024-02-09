@@ -5,7 +5,6 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
 from langchain.vectorstores import Chroma
-import json
 
 
 def get_memory(): # 대화 기록을 저장하는 메모리
